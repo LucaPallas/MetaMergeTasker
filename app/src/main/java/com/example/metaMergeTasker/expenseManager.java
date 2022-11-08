@@ -6,7 +6,12 @@
 package com.example.metaMergeTasker;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,11 +19,22 @@ import java.util.List;
 
 public class expenseManager extends AppCompatActivity {
 
+    ImageButton imageButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_manager_screen);
     }
+
+    ImageButton addExpense = (ImageButton) findViewById(R.id.btn_addexpense);
+
+    addExpense.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent intent=new Intent(expenseManager.this, expensemanager.class);
+            startActivity(intent);
+        }
+    });
 
     // Adam - Relocated this to top of file.... needs to be declaired before we extended it...
     public class expense {
