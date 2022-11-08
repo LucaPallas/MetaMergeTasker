@@ -26,7 +26,20 @@ public class expenseMain extends AppCompatActivity {
         // ADAM: Set textview title here in case we want other UI languages in the future
         expenseTitle.setText("Expense");
 
+        // App storage
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
+
+        // Adam: Fetch Fields Example
+        /*
+        genBTN8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String expenseName = (String) expenseName.getText();
+                Double expenseCost = (Double) expenseCost.getText();
+                // Store in array
+                Intent intent=new Intent(expenseEdit.this, expenseMain.class);
+                startActivity(intent);
+            }
+        }); */
 
         //ADAM: ArrayList of Sets for storage of our expenses
         List<Set<String>> expenses = new ArrayList<Set<String>>();

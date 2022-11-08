@@ -72,6 +72,7 @@ public class expenseManager extends AppCompatActivity {
             return totalCostOfAllExpenses;
         }
 
+        // not needed
         public void printExpenseDetails() {
             System.out.printf("\n%-10s%s\n", "Expense Name:", expenseName);
             System.out.printf("\n%-10s%s\n", "Weekly Cost of Expense: $", weeklyCostOfExpense);
