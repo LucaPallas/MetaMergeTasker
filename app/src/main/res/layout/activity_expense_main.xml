@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/add_note"
+    android:id="@+id/idRLContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".expenseMain">
+    android:orientation="vertical"
+    tools:context=".ex">
 
-    <!--Adding a ListView -->
-    <ListView
-        android:id="@+id/expenseListView"
-        android:layout_width="409dp"
-        android:layout_height="601dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--on below line we are creating edit text
+        for adding a new item to list-->
+    <EditText
+        android:id="@+id/idEdtItemName"
+        android:layout_width="311dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toLeftOf="@id/idBtnAdd"
+        android:hint="Enter item name to add in ist" />
 
-    <!--Adding a TextView -->
-    <TextView
-        android:id="@+id/expenseTitle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/expenseListView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!--button for adding item from edit text to list-->
     <Button
-        android:id="@+id/addExpenseBtn"
+        android:id="@+id/idBtnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="26dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
+        android:text="Add"
+        android:textAllCaps="false" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--list view to display list of languages-->
+    <ListView
+        android:id="@+id/idLVLanguages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/idEdtItemName"
+        android:layout_marginTop="97dp" />
+
+</RelativeLayout>

@@ -19,21 +19,5 @@ public class expenseEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_edit);
 
-
-
-        Button name = (Button) findViewById(R.id.expenseName);
-
-
-        name.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String expenseName = (String) name.getText();
-                // Store in array
-                Intent intent=new Intent(expenseEdit.this, expenseMain.class);
-                startActivity(intent);
-            }
-        });
-
-
-
     }
 }
