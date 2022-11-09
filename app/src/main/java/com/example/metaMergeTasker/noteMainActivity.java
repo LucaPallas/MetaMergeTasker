@@ -40,10 +40,6 @@ public class noteMainActivity extends AppCompatActivity {
         Button addNoteBtn = (Button) findViewById(id.addNoteBtn);
         ListView listView = findViewById(id.noteListView);
 
-
-
-
-
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
 

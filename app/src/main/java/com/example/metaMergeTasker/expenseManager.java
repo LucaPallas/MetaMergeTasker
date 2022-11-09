@@ -143,11 +143,11 @@ public class expenseManager extends AppCompatActivity {
             }
         }
 
-        public void calcTotalMonthlyCost() {
+        public int calcTotalMonthlyCost() {
             for (int j = 0; j < myArrayList.size(); j++) {
                 total += myArrayList.get(j);
             }
-            System.out.println("Total monthly expense of all expenses is equal to: $" + total);
+            return total;
         }
     } // Adam - Missing Brace ;-)
 

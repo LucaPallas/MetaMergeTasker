@@ -30,12 +30,17 @@ public class homeScreen extends AppCompatActivity {
         ImageButton pwMang = (ImageButton) findViewById(R.id.btn_manager);
 
         // Adam: PWGen Image Button Action
-        pwGen.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, passwordGeneratorScreen.class);
-                startActivity(intent);
-            }
-        });
+        //pwGen.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+
+            //}
+
+            //public void onClick(View = v) {
+                //Intent intent=new Intent(homeScreen.this, passwordGeneratorScreen.class);
+                //startActivity(intent);
+            //}
+        //});
 
         // Adam: Note Taker Image Button Action
         lists.setOnClickListener(new View.OnClickListener() {
