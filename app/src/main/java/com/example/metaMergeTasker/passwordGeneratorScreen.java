@@ -24,6 +24,9 @@ public class passwordGeneratorScreen extends AppCompatActivity
         MaterialButton genBTN8 = findViewById(R.id.genBTN);
         MaterialButton genBTN12 = findViewById(R.id.gen1BTN);
 
+        // Adam: Read only Password Field
+        passwordField.setEnabled(false);
+
         // Adam: Run this on load to populate password field
         passwordField.setText(getPassword(12));
 
