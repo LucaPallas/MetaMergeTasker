@@ -49,9 +49,8 @@ public class noteMainActivity extends AppCompatActivity {
             notes = new ArrayList(set);
         }
 
-        // Using custom listView Provided by Android Studio
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
-
+        // Using custom listView
+        arrayAdapter = new ArrayAdapter(this, R.layout.list_view, notes);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

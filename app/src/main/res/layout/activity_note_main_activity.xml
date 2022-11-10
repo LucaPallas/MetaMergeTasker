@@ -28,8 +28,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.163" />
 
-
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addNoteBtn"
         android:layout_width="351dp"

@@ -45,8 +45,8 @@ public class todoMainActivity extends AppCompatActivity {
             todos = new ArrayList(set);
         }
 
-        // Using custom listView Provided by Android Studio
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, todos);
+        // Using custom listView layout
+        arrayAdapter = new ArrayAdapter(this, layout.list_view, todos);
 
         listView.setAdapter(arrayAdapter);
 

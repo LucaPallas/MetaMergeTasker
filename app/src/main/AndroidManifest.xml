@@ -30,6 +30,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".todoMainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".todoEditTask"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".noteMainActivity"
             android:exported="false">
             <meta-data

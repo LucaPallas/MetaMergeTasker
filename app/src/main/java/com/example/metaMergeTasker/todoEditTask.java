@@ -20,7 +20,7 @@ public class todoEditTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_edit_activity);
 
-        EditText editText = findViewById(R.id.editTodoText);
+        EditText editTodoText = findViewById(R.id.editTodoText);
 
         // Fetch data that is passed from MainActivity
         Intent intent = getIntent();
@@ -28,16 +28,16 @@ public class todoEditTask extends AppCompatActivity {
         // Accessing the data using key and value
         todoId = intent.getIntExtra("todoId", -1);
         if (todoId != -1) {
-            editText.setText(todoMainActivity.todos.get(todoId));
+            editTodoText.setText(todoMainActivity.todos.get(todoId));
         } else {
 
             todoMainActivity.todos.add("");
-            todoId = noteMainActivity.notes.size() - 1;
+            todoId = todoMainActivity.todos.size() - 1;
             todoMainActivity.arrayAdapter.notifyDataSetChanged();
 
         }
 
-        editText.addTextChangedListener(new TextWatcher() {
+        editTodoText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // add your code here
