@@ -7,29 +7,23 @@
     android:background="#DA0000"
     tools:context=".expenseEdit">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/expenseNameInput"
-        android:layout_width="410dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="42dp"
-        android:hint="Enter Expense Name"
-        app:layout_constraintBottom_toTopOf="@+id/expenseCostInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/idBtnAdd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
+        android:text="Add"
+        android:textAllCaps="false"
+        tools:layout_editor_absoluteX="320dp"
+        tools:layout_editor_absoluteY="14dp" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/expenseCostInput"
-        android:layout_width="407dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="390dp"
-        android:hint="Enter Weekly Cost Of Expense"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expenseNameInput" />
+    <EditText
+        android:id="@+id/idEdtItemName2"
+        android:layout_width="311dp"
+        android:layout_height="62dp"
+        android:layout_toLeftOf="@id/idBtnAdd"
+        android:hint="Enter item name to add in ist"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

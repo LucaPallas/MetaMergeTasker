@@ -41,6 +41,8 @@ public class expenseMain extends AppCompatActivity {
         lngList.add("C++");
         lngList.add("Python");
 
+
+
         // on the below line we are initializing the adapter for our list view.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lngList);
 
@@ -52,7 +54,8 @@ public class expenseMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // on below line we are getting text from edit text
-                String item = itemEdt.getText().toString();
+                Intent intent=new Intent(expenseMain.this, expenseEdit.class);
+                startActivity(intent);
 
 
                 // on below line we are checking if item is not empty
