@@ -55,10 +55,10 @@ public class homeScreen extends AppCompatActivity {
             }
         });
 
-        // Adam: Expense Manager Button Action
+         // Adam: Expense Manager Button Action
         expMang.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, expenseMain.class);
+                Intent intent=new Intent(homeScreen.this, MainActivity.class);
                 startActivity(intent);
             }
         });
