@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class expenseMain extends AppCompatActivity {
     RecyclerView recyclerView;
     ExpenseAdapter adapter;
     ArrayList<Expense> list;

@@ -2,16 +2,10 @@ package com.example.metaMergeTasker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.Toast;
-import com.example.metaMergeTasker.extraFunctions;
-
-import com.google.android.material.button.MaterialButton;
 
 public class homeScreen extends AppCompatActivity {
 
@@ -58,7 +52,7 @@ public class homeScreen extends AppCompatActivity {
          // Adam: Expense Manager Button Action
         expMang.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, MainActivity.class);
+                Intent intent=new Intent(homeScreen.this, expenseMain.class);
                 startActivity(intent);
             }
         });
