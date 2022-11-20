@@ -23,7 +23,7 @@ public class expenseMain extends AppCompatActivity {
     Button add;
 
     // Adam: Convert ArrayList to HashMap's for Storage
-    public boolean storageSend(String ex, Double a) {
+    public boolean storageSend() {
         // Temp Arrays
         ArrayList<String> storageExpenses = new ArrayList<>(), storageAmounts = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class expenseMain extends AppCompatActivity {
                     total.setText("Total - $"+totalAmount);
                 }
                 // Adam: Update stored DATA
-                storageSend(ex,a);
+                storageSend();
             }
         });
     }
