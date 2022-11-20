@@ -73,6 +73,8 @@ public class todoMainActivity extends AppCompatActivity {
             while (itCounter.hasNext()) {
                 todos.add(new Todo(Boolean.parseBoolean(itCounter.next().toString()), itCounter2.next().toString()));
             }
+        } else {
+            todos.add(false, "Example Task");
         }
 
         return true; // Return False if we need error reporting?
@@ -86,6 +88,10 @@ public class todoMainActivity extends AppCompatActivity {
         Button addNoteBtn = (Button) findViewById(id.addTodoBtn);
         ListView listView = findViewById(id.todoListView);
 
+        // Adam: New Storage Code
+        // storageRecv();
+
+        // Adam: Remove this code and replace with new storage code
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("todos", null);
 
@@ -94,6 +100,7 @@ public class todoMainActivity extends AppCompatActivity {
         } else {
             todos = new ArrayList(set);
         }
+        // Adam: END - REMOVAL
 
         // Using custom listView layout
         arrayAdapter = new ArrayAdapter(this, layout.list_view, todos);
@@ -126,9 +133,16 @@ public class todoMainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 todos.remove(itemToDelete);
                                 arrayAdapter.notifyDataSetChanged();
+
+                                // Adam: New Storage Code
+                                // storageSend();
+
+                                // Adam: Remove this code and replace with new storage code
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
                                 HashSet<String> set = new HashSet(todoMainActivity.todos);
                                 sharedPreferences.edit().putStringSet("todos", set).apply();
+                                // Adam: END - REMOVAL
+
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
