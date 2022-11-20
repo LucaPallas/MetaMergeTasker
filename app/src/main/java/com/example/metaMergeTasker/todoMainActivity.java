@@ -21,13 +21,63 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 public class todoMainActivity extends AppCompatActivity {
 
-    static ArrayList<String> todos = new ArrayList<>();
+    static ArrayList<String> todos = new ArrayList<>(); // ADAM: LUCA --> Implement todo class similar to expenses class
     static ArrayAdapter arrayAdapter;
 
+    /****** CODE READY for New ARRAYLIST CLASS *******/
+/*
+    // Adam: Convert ArrayList to HashMap's for Storage
+    public boolean storageSend() {
+        // Temp Arrays
+        ArrayList<String> storageStatus = new ArrayList<>(), storageContents = new ArrayList<>();
+
+        // Storage Config
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
+
+        // Loop ArrayList<Expenses> list
+        for (int i = 0; i < todos.size(); i++) {
+            storageStatus.add(String.valueOf(todos.get(i).getTodoStatus()));
+            storageContents.add(String.valueOf(todos.get(i).getTodoContents()));
+        }
+        // Push to storage - Part 1
+        HashSet<String> tmpSet1 = new HashSet(storageStatus);
+        sharedPreferences.edit().putStringSet("todosPart1", tmpSet1).apply();
+
+        HashSet<String> tmpSet2 = new HashSet(storageContents);
+        sharedPreferences.edit().putStringSet("todosPart2", tmpSet2).apply();
+
+        return true; // Return False if we need error reporting?
+    }
+
+    // Adam: Rebuild ArrayList from two HashMap Sources
+    public boolean storageRecv() {
+        todos = new ArrayList<>();
+
+        // Storage Config
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
+        HashSet<String> setPart1 = (HashSet<String>) sharedPreferences.getStringSet("todosPart1", null);
+        HashSet<String> setPart2 = (HashSet<String>) sharedPreferences.getStringSet("todosPart2", null);
+
+        // Simple NULL Check
+        if (setPart1 != null && setPart2 != null) {
+            // iterator so we can loop though the hashset
+            Iterator itCounter = setPart1.iterator();
+            Iterator itCounter2 = setPart2.iterator();
+
+            // Rebuild Array list from two HashSets
+            while (itCounter.hasNext()) {
+                todos.add(new Todo(Boolean.parseBoolean(itCounter.next().toString()), itCounter2.next().toString()));
+            }
+        }
+
+        return true; // Return False if we need error reporting?
+    }
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
