@@ -108,7 +108,7 @@ public class expenseMain extends AppCompatActivity {
                 for(int i = 0;i <list.size();i++){
 
                     totalAmount += list.get(i).getExpenseAmount();
-                    total.setText("Total Rs. "+totalAmount);
+                    total.setText("Total - $"+totalAmount);
                 }
                 // Adam: Update stored DATA
                 storageSend(ex,a);
