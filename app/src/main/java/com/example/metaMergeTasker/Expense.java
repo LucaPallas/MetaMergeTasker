@@ -2,9 +2,9 @@ package com.example.metaMergeTasker;
 
 public class Expense {
     private String expenseName;
-    private int expenseAmount;
+    private double expenseAmount;
 
-    public Expense(String expenseName, int expenseAmount) {
+    public Expense(String expenseName, double expenseAmount) {
         this.expenseName = expenseName;
         this.expenseAmount = expenseAmount;
     }
@@ -17,7 +17,7 @@ public class Expense {
         this.expenseName = expenseName;
     }
 
-    public int getExpenseAmount() {
+    public double getExpenseAmount() {
         return expenseAmount;
     }
 
