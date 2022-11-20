@@ -108,9 +108,5 @@ public class expenseMain extends AppCompatActivity {
                 storageSend(ex,a);
             }
         });
-
-
-
-
     }
 }
