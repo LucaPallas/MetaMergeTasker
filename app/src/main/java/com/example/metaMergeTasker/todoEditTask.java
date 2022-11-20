@@ -47,10 +47,16 @@ public class todoEditTask extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 todoMainActivity.todos.set(todoId, String.valueOf(charSequence));
                 todoMainActivity.arrayAdapter.notifyDataSetChanged();
+
+                // Adam: New Storage Code
+                // storageSend();
+
+                // Adam: Remove this code and replace with new storage code
                 // Creating Object of SharedPreferences to store data in the phone
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
                 HashSet<String> set = new HashSet(todoMainActivity.todos);
                 sharedPreferences.edit().putStringSet("todos", set).apply();
+                // Adam: END - REMOVAL
             }
 
             @Override
