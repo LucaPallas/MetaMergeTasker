@@ -77,7 +77,7 @@ public class expenseMain extends AppCompatActivity {
                 for(int i = 0;i <list.size();i++){
 
                     totalAmount += list.get(i).getExpenseAmount();
-                    total.setText("Total Rs. "+totalAmount);
+                    total.setText("Total - $"+totalAmount);
                 }
   /*
                 // Creating Object of SharedPreferences to store data in the phone
