@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class expenseMain extends AppCompatActivity {
@@ -27,15 +28,51 @@ public class expenseMain extends AppCompatActivity {
     TextView total;
     Button add;
 
-    public HashSet listToSetConversion(ArrayList<Expense> input) {
-        HashSet<Object> output = new HashSet<Object>(Collections.singleton(input.toString()));
-        return output;
+    // Adam: Convert ArrayList to HashMap's for Storage
+    public boolean storageSend(String ex, Double a) {
+        // Temp Arrays
+        ArrayList<String> storageExpenses = new ArrayList<>(), storageAmounts = new ArrayList<>();
+
+        // Storage Config
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
+
+        // Loop ArrayList<Expenses> list
+        for (int i = 0; i < list.size(); i++) {
+            storageExpenses.add(String.valueOf(list.get(i).getExpenseName()));
+            storageAmounts.add(String.valueOf(list.get(i).getExpenseAmount()));
+        }
+        // Push to storage - Part 1
+        HashSet<String> tmpSet1 = new HashSet(storageExpenses);
+        sharedPreferences.edit().putStringSet("expensesPart1", tmpSet1).apply();
+
+        HashSet<String> tmpSet2 = new HashSet(storageAmounts);
+        sharedPreferences.edit().putStringSet("expensesPart2", tmpSet2).apply();
+
+        return true; // Return False if we need error reporting?
     }
 
-    public ArrayList setToListConversion(Set input) {
-        ArrayList<Expense> output = new ArrayList<>(input);
-        Log.d("STATE", input.toString());
-        return output;
+    // Adam: Rebuild ArrayList from two HashMap Sources
+    public boolean storageRecv() {
+        list = new ArrayList<>();
+
+        // Storage Config
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
+        HashSet<String> setPart1 = (HashSet<String>) sharedPreferences.getStringSet("expensesPart1", null);
+        HashSet<String> setPart2 = (HashSet<String>) sharedPreferences.getStringSet("expensesPart2", null);
+
+        // Simple NULL Check
+        if (setPart1 != null && setPart2 != null) {
+            // iterator so we can loop though the hashset
+            Iterator itCounter = setPart1.iterator();
+            Iterator itCounter2 = setPart2.iterator();
+
+            // Rebuild Array list from two HashSets
+            while (itCounter.hasNext()) {
+                list.add(new Expense(itCounter.next().toString(), Double.parseDouble(itCounter2.next().toString())));
+            }
+        }
+
+        return true; // Return False if we need error reporting?
     }
 
     @Override
@@ -49,14 +86,8 @@ public class expenseMain extends AppCompatActivity {
         add = findViewById(R.id.addbutton);
         total = findViewById(R.id.totalamount);
 
-  /*      // Fetch Saved Data
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("expenses", null);
-
-        if (set != null) {
-            list = setToListConversion(set);
-        }
-*/
+        // Adam: Fetch DATA From Storage
+        storageRecv();
 
         adapter = new ExpenseAdapter(this,list);
         LinearLayoutManager llm = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
@@ -79,13 +110,8 @@ public class expenseMain extends AppCompatActivity {
                     totalAmount += list.get(i).getExpenseAmount();
                     total.setText("Total Rs. "+totalAmount);
                 }
-  /*
-                // Creating Object of SharedPreferences to store data in the phone
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.metaMergeTasker", Context.MODE_PRIVATE);
-                HashSet set = listToSetConversion(list);
-                sharedPreferences.edit().putStringSet("expenses", set).apply();
-
-   */
+                // Adam: Update stored DATA
+                storageSend(ex,a);
             }
         });
 
