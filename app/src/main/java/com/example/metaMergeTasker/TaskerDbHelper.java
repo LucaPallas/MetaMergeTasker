@@ -49,6 +49,8 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         // status of task- can be 0 for not done and1 for done
         values.put(KEY_STATUS, task.getStatus());
 
+        values.put(KEY_DELETED, task.getDeleted());
+
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
         db.close(); // Closing database connection
@@ -57,8 +59,10 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
     public List<Task> getAllTasks() {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM "
-                + TABLE_TASKS + " WHERE deleted = 0";
+        // ADAM : Not sure why its not liking this
+        //String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE " + KEY_DELETED + " = 0";
+        String selectQuery = "SELECT * FROM " + TABLE_TASKS;
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
@@ -86,5 +90,4 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
             db.update(TABLE_TASKS, values, KEY_ID + " = ?",
                     new String[]{String.valueOf(task.getId())});
         }
-
 }
