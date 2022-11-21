@@ -36,6 +36,8 @@ public class Task {
     {
         this.status = status;
     }
-    public void setDeleted(int deleted) { this.deleted = deleted; }
+    public int getDeleted() {
+        return deleted;
     }
+    public void setDeleted(int deleted) { this.deleted = deleted; }
 }

@@ -84,7 +84,6 @@ public class ViewTask extends AppCompatActivity {
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
                         db.updateTask(changeTask);
-                        db.
                         Toast.makeText(
                                 getApplicationContext(),
                                 "Clicked on Checkbox: " + cb.getText() + " is "
