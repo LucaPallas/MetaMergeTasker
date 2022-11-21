@@ -10,6 +10,13 @@
         android:theme="@style/Theme.MyLoginApp">
 
         <activity
+            android:name=".ViewTask"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".expenseMain"
             android:exported="false">
             <meta-data

@@ -22,6 +22,7 @@ public class expenseMain extends AppCompatActivity {
     TextView total;
     Button add;
 
+
     // Adam: Convert ArrayList to HashMap's for Storage
     public boolean storageSend() {
         // Temp Arrays
@@ -72,7 +73,7 @@ public class expenseMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_expense_main);
         recyclerView = findViewById(R.id.recyclerview);
         list = new ArrayList<>();
         exp = findViewById(R.id.expense);

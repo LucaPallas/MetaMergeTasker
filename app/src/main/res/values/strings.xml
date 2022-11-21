@@ -13,4 +13,5 @@
     <string name="google_icon">google icon</string>
     <string name="facebook_icon">facebook icon</string>
     <string name="twitter_icon">twitter icon</string>
+    <string name="button" />
 </resources>

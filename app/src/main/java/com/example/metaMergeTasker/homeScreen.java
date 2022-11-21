@@ -35,7 +35,7 @@ public class homeScreen extends AppCompatActivity {
         // Adam: Note Taker Image Button Action
         lists.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, todoMainActivity.class);
+                Intent intent=new Intent(homeScreen.this, ViewTask.class);
                 startActivity(intent);
             }
         });

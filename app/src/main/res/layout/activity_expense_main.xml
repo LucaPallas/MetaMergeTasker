@@ -16,15 +16,15 @@
         />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/totalamount"
-            android:text="Rs. 0"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/expense"
-            />
+    <TextView
+        android:id="@+id/totalamount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total - $"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@id/expense"
+        tools:layout_editor_absoluteX="10dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/expense"
