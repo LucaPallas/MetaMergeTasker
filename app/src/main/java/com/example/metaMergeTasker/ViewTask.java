@@ -64,7 +64,7 @@ public class ViewTask extends AppCompatActivity {
             this.context = context;
         }
         /**
-         * This method will DEFINe what the view inside the list view will
+         * This method will DEFINE what the view inside the list view will
          * finally look like Here we are going to code that the checkbox state
          * is the status of task and check box text is the task name
          */
@@ -78,14 +78,16 @@ public class ViewTask extends AppCompatActivity {
                         parent, false);
                 chk = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 convertView.setTag(chk);
+
                 chk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
                         Task changeTask = (Task) cb.getTag();
-                        //changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
-                        changeTask.setStatus(1); // Adam: Using for testing...
+                        changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
+                        //changeTask.setStatus(1); // Adam: Using for testing...
                         db.updateTask(changeTask);
+
                         Toast.makeText(
                                 getApplicationContext(),
                                 "Clicked on Checkbox: " + cb.getText() + " is "
@@ -96,6 +98,7 @@ public class ViewTask extends AppCompatActivity {
             } else {
                 chk = (CheckBox) convertView.getTag();
             }
+
             Task current = taskList.get(position);
             chk.setText(current.getTaskName());
             chk.setChecked(current.getStatus() == 1 ? true : false);

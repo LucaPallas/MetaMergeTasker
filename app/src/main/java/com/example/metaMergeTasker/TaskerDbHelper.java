@@ -87,6 +87,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
             values.put(KEY_TASKNAME, task.getTaskName());
             values.put(KEY_DELETED, task.getDeleted());
             values.put(KEY_STATUS, task.getStatus());
+            //values.put(KEY_STATUS, 1);
             db.update(TABLE_TASKS, values, "'" + KEY_ID + "'" + " = ?",
                     new String[]{String.valueOf(task.getId())});
         }
