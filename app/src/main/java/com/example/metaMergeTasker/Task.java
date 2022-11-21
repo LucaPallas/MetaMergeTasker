@@ -4,13 +4,14 @@ public class Task {
     private String taskName;
     private int status;
     private int id;
+    private int deleted;
     public Task()
     {
         this.taskName=null;
         this.status=0;
     }
     public Task(String taskName,
-                int status) {
+                int status, int deleted) {
         super();
         this.taskName = taskName;
         this.status = status;
@@ -34,5 +35,7 @@ public class Task {
     public void setStatus(int status)
     {
         this.status = status;
+    }
+    public void setDeleted(int deleted) { this.deleted = deleted; }
     }
 }

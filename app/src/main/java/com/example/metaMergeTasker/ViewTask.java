@@ -41,7 +41,7 @@ public class ViewTask extends AppCompatActivity {
             Toast.makeText(this, "enter the task description first!!",
             Toast.LENGTH_LONG).show();
         } else {
-            Task task = new Task(s, 0);
+            Task task = new Task(s, 0, 0);
             db.addTask(task);
             Log.d("tasker", "data added");
             t.setText("");
@@ -75,7 +75,7 @@ public class ViewTask extends AppCompatActivity {
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.list_inner_view,
                         parent, false);
-                chk = (CheckBox) convertView.findViewById(R.id.chkStatus);
+                chk = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 convertView.setTag(chk);
                 chk.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -84,6 +84,7 @@ public class ViewTask extends AppCompatActivity {
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
                         db.updateTask(changeTask);
+                        db.
                         Toast.makeText(
                                 getApplicationContext(),
                                 "Clicked on Checkbox: " + cb.getText() + " is "
