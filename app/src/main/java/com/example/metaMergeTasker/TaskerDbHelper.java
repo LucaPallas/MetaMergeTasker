@@ -60,8 +60,8 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
         // ADAM : Not sure why its not liking this
-        //String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE " + KEY_DELETED + " = 0";
-        String selectQuery = "SELECT * FROM " + TABLE_TASKS;
+        String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE '" + KEY_DELETED + "' <> 1";
+        //String selectQuery = "SELECT * FROM " + TABLE_TASKS;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -87,7 +87,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
             values.put(KEY_TASKNAME, task.getTaskName());
             values.put(KEY_DELETED, task.getDeleted());
             values.put(KEY_STATUS, task.getStatus());
-            db.update(TABLE_TASKS, values, KEY_ID + " = ?",
+            db.update(TABLE_TASKS, values, "'" + KEY_ID + "'" + " = ?",
                     new String[]{String.valueOf(task.getId())});
         }
 }
