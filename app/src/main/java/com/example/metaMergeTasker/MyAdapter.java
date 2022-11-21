@@ -32,7 +32,7 @@ public class MyAdapter extends ArrayAdapter<Task>
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_inner_view, parent, false);
-        CheckBox chk=(CheckBox)rowView.findViewById(R.id.chkStatus);
+        CheckBox chk=(CheckBox)rowView.findViewById(R.id.checkBox1);
         Task current=taskList.get(position);
         chk.setText(current.getTaskName());
         chk.setChecked(current.getStatus()==1?true:false);

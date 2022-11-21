@@ -12,8 +12,7 @@ public class Task {
         this.status=0;
         this.deleted=0;
     }
-    public Task(String taskName,
-                int status, int deleted) {
+    public Task(String taskName, int status, int deleted) {
         super();
         this.taskName = taskName;
         this.status = status;

@@ -34,6 +34,7 @@ public class ViewTask extends AppCompatActivity {
         ListView listTask = (ListView) findViewById(R.id.listView1);
         listTask.setAdapter(adapt);
     }
+
     public void addTaskNow(View v) {
         EditText t = (EditText) findViewById(R.id.editText1);
         String s = t.getText().toString();
@@ -82,7 +83,8 @@ public class ViewTask extends AppCompatActivity {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
                         Task changeTask = (Task) cb.getTag();
-                        changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
+                        //changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
+                        changeTask.setStatus(1); // Adam: Using for testing...
                         db.updateTask(changeTask);
                         Toast.makeText(
                                 getApplicationContext(),
