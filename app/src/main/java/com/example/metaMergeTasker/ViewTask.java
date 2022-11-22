@@ -3,19 +3,15 @@ package com.example.metaMergeTasker;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,6 +98,21 @@ public class ViewTask extends AppCompatActivity {
                                 "Clicked on Checkbox ID: " + current.getId() + " Content: " + cb.getText() + " is "
                         + cb.isChecked(), Toast.LENGTH_LONG)
                                 .show();
+                    }
+                });
+                chk.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        CheckBox cb = (CheckBox) v;
+                        Task changeTask = (Task) cb.getTag();
+                        changeTask.setDeleted(1);
+                        db.updateTask(changeTask);
+
+                        Toast.makeText(
+                                getApplicationContext(),
+                                        "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG)
+                                .show();
+                        return false;
                     }
                 });
             } else {

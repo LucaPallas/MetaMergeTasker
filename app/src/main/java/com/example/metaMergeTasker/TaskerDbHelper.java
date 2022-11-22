@@ -82,7 +82,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         // return task list
         return taskList;
         }
-        public void updateTask(Task task){
+        public void updateTask(Task task) {
             // updating row
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
