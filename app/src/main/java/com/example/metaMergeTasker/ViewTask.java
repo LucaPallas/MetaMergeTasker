@@ -47,6 +47,13 @@ public class ViewTask extends AppCompatActivity {
             Log.d("tasker", "data added");
             t.setText("");
             adapt.add(task);
+
+            db = new TaskerDbHelper(this);
+            list = db.getAllTasks();
+            adapt = new MyAdapter(this, R.layout.list_inner_view, list);
+            ListView listTask = (ListView) findViewById(R.id.listView1);
+            listTask.setAdapter(adapt);
+
             adapt.notifyDataSetChanged();
         }
     }
@@ -71,6 +78,8 @@ public class ViewTask extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             CheckBox chk;
+            Task current = taskList.get(position);
+
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,6 +91,7 @@ public class ViewTask extends AppCompatActivity {
                 chk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         CheckBox cb = (CheckBox) v;
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
@@ -90,7 +100,7 @@ public class ViewTask extends AppCompatActivity {
 
                         Toast.makeText(
                                 getApplicationContext(),
-                                "Clicked on Checkbox: " + cb.getText() + " is "
+                                "Clicked on Checkbox ID: " + current.getId() + " Content: " + cb.getText() + " is "
                         + cb.isChecked(), Toast.LENGTH_LONG)
                                 .show();
                     }
@@ -99,7 +109,6 @@ public class ViewTask extends AppCompatActivity {
                 chk = (CheckBox) convertView.getTag();
             }
 
-            Task current = taskList.get(position);
             chk.setText(current.getTaskName());
             chk.setChecked(current.getStatus() == 1 ? true : false);
             chk.setTag(current);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_TASKS + " ( "
-        + KEY_ID + "INTEGER PRIMARY KEY, "
+        + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
         + KEY_TASKNAME+ " TEXT, "
         + KEY_DELETED + " INTEGER, "
         + KEY_STATUS + " INTEGER)";
@@ -75,6 +76,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
                 task.setStatus(cursor.getInt(2));
                 // Adding contact to list
                 taskList.add(task);
+
             } while (cursor.moveToNext());
         }
         // return task list
@@ -87,6 +89,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
             values.put(KEY_TASKNAME, task.getTaskName());
             values.put(KEY_DELETED, task.getDeleted());
             values.put(KEY_STATUS, task.getStatus());
+            Log.d("listener", new String[]{String.valueOf(task.getId())} + " - " + values);
             //values.put(KEY_STATUS, 1);
             db.update(TABLE_TASKS, values, "'" + KEY_ID + "'" + " = ?",
                     new String[]{String.valueOf(task.getId())});
