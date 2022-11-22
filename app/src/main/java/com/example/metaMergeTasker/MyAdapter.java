@@ -10,13 +10,12 @@ import android.widget.CheckBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Task>
-{
+public class MyAdapter extends ArrayAdapter<Task> {
     Context context;
     List<Task> taskList=new ArrayList<Task>();
     int layoutResourceId;
-    public MyAdapter(Context context, int layoutResourceId,
-                     List<Task> objects) {
+
+    public MyAdapter(Context context, int layoutResourceId, List<Task> objects) {
         super(context, layoutResourceId, objects);
         this.layoutResourceId = layoutResourceId;
         this.taskList=objects;
@@ -35,7 +34,7 @@ public class MyAdapter extends ArrayAdapter<Task>
         CheckBox chk=(CheckBox)rowView.findViewById(R.id.checkBox1);
         Task current=taskList.get(position);
         chk.setText(current.getTaskName());
-        chk.setChecked(current.getStatus()==1?true:false);
+        chk.setChecked(current.getStatus() == 1 ? true:false);
 
         return rowView;
     }

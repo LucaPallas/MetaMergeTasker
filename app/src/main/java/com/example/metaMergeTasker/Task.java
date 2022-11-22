@@ -6,12 +6,12 @@ public class Task {
     private int id;
     private int deleted;
 
-    public Task()
-    {
-        //this.taskName=null;
-        //this.status=0;
-        //this.deleted=0;
+    public Task() {
+        this.taskName=null;
+        this.status=0;
+        this.deleted=0;
     }
+
     public Task(String taskName, int status, int deleted) {
         super();
         this.taskName = taskName;
