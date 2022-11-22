@@ -39,10 +39,4 @@ public class MyAdapter extends ArrayAdapter<Task>
 
         return rowView;
     }
-    @Override
-    public void notifyDataSetChanged()
-    {
-        super.notifyDataSetChanged();
-    }
-
 }

@@ -86,12 +86,12 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
             // updating row
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(KEY_TASKNAME, task.getTaskName());
+            values.put(KEY_TASKNAME, "'" + task.getTaskName());
             values.put(KEY_DELETED, task.getDeleted());
             values.put(KEY_STATUS, task.getStatus());
-            Log.d("listener", new String[]{String.valueOf(task.getId())} + " - " + values);
-            //values.put(KEY_STATUS, 1);
-            db.update(TABLE_TASKS, values, "'" + KEY_ID + "'" + " = ?",
-                    new String[]{String.valueOf(task.getId())});
+            Log.d("listener", task.getId() + " - " + values);
+            int blah = db.update(TABLE_TASKS, values, "" + KEY_ID + "" + " = " + task.getId(), null);
+            Log.d("listener", "SQL STATUS: " + blah + " [0 = Failed, 1 = Success]");
+            //db.close();
         }
 }

@@ -95,7 +95,6 @@ public class ViewTask extends AppCompatActivity {
                         CheckBox cb = (CheckBox) v;
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
-                        //changeTask.setStatus(1); // Adam: Using for testing...
                         db.updateTask(changeTask);
 
                         Toast.makeText(
@@ -112,7 +111,8 @@ public class ViewTask extends AppCompatActivity {
             chk.setText(current.getTaskName());
             chk.setChecked(current.getStatus() == 1 ? true : false);
             chk.setTag(current);
-            Log.d("listener", String.valueOf(current.getId()));
+            Log.d("listener", "ID: " + String.valueOf(current.getId()) + " - Status: " + current.getStatus());
+
             return convertView;
         }
     }
