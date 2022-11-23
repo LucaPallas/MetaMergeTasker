@@ -38,25 +38,30 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@id/expense"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/expense"
         android:layout_width="0dp"
-        app:boxBackgroundColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:boxBackgroundMode="outline"
+        android:layout_height="wrap_content"
+        android:hint="Enter Expense"
+        android:textColorHint="#979393"
 
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="outline"
+        app:hintTextColor="#0570B3"
         app:layout_constraintBottom_toTopOf="@id/addbutton"
         app:layout_constraintEnd_toStartOf="@id/amount"
-        android:hint="Enter Expense"
-        android:layout_height="wrap_content">
+        app:layout_constraintStart_toStartOf="parent"
+        app:passwordToggleTint="#F4ECEC">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#011B30"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +73,10 @@
         app:layout_constraintBottom_toTopOf="@id/addbutton"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="Enter Amount"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#979393"
+        app:hintTextColor="#0570B3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
