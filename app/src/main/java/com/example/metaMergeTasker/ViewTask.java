@@ -109,8 +109,11 @@ public class ViewTask extends AppCompatActivity {
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setDeleted(1);
                         db.updateTask(changeTask);
+                        // Adam: Dirty Hack for the mean time to now show the item :D
+                        cb.setVisibility(View.INVISIBLE);
                         // For Debugging
                         Toast.makeText(getApplicationContext(), "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG).show();
+
                         adapt.notifyDataSetChanged();
 
                         return false;
