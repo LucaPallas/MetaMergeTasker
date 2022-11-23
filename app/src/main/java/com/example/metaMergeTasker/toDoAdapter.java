@@ -10,12 +10,12 @@ import android.widget.CheckBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends ArrayAdapter<Task> {
+public class toDoAdapter extends ArrayAdapter<toDoClass> {
     Context context;
-    List<Task> taskList=new ArrayList<Task>();
+    List<toDoClass> taskList=new ArrayList<toDoClass>();
     int layoutResourceId;
 
-    public MyAdapter(Context context, int layoutResourceId, List<Task> objects) {
+    public toDoAdapter(Context context, int layoutResourceId, List<toDoClass> objects) {
         super(context, layoutResourceId, objects);
         this.layoutResourceId = layoutResourceId;
         this.taskList=objects;
@@ -30,11 +30,11 @@ public class MyAdapter extends ArrayAdapter<Task> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.list_inner_view, parent, false);
+        View rowView = inflater.inflate(R.layout.activity_to_do_list_inner_view, parent, false);
         CheckBox chk=(CheckBox)rowView.findViewById(R.id.checkBox1);
-        Task current=taskList.get(position);
+        toDoClass current=taskList.get(position);
         chk.setText(current.getTaskName());
-        chk.setChecked(current.getStatus() == 1 ? true:false);
+        chk.setChecked(current.getStatus() == 1);
 
         return rowView;
     }

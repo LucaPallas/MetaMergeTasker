@@ -1,37 +1,49 @@
 package com.example.metaMergeTasker;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-import android.graphics.Paint;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ViewTask extends AppCompatActivity {
-    protected TaskerDbHelper db;
-    List<Task> list;
+public class toDoScreen extends AppCompatActivity {
+    protected toDoDbHelper db;
+    List<toDoClass> list;
     MyAdapter adapt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_task);
-        db = new TaskerDbHelper(this);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        setContentView(R.layout.activity_to_do_screen);
+        db = new toDoDbHelper(this);
         list = db.getAllTasks();
-        adapt = new MyAdapter(this, R.layout.list_inner_view, list);
+        adapt = new MyAdapter(this, R.layout.activity_to_do_list_inner_view, list);
         ListView listTask = (ListView) findViewById(R.id.listView1);
         listTask.setAdapter(adapt);
+
+        new AlertDialog.Builder(toDoScreen.this)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setTitle("Information")
+                .setMessage("Type task details at bottom of screen" + "\n\n" + "Use button to add task to the list" + "\n\n" +  "Tap on a tasks checkbox to mark it as completed" + "\n\n" + "Long tap on a tasks checkbox to delete the task")
+                .setPositiveButton("OK", null).show();
+
     }
 
     public void addTaskNow(View v) {
@@ -42,16 +54,16 @@ public class ViewTask extends AppCompatActivity {
             Toast.makeText(this, "enter the task description first!!",
             Toast.LENGTH_LONG).show();
         } else {
-            Task task = new Task(s, 0, 0);
+            toDoClass task = new toDoClass(s, 0, 0);
             db.addTask(task);
             Log.d("tasker", "data added");
             t.setText("");
             adapt.add(task);
 
             // Adam: Here I am forcing a full reload of the task list
-            db = new TaskerDbHelper(com.example.metaMergeTasker.ViewTask.this);
+            db = new toDoDbHelper(toDoScreen.this);
             list = db.getAllTasks();
-            adapt = new MyAdapter(com.example.metaMergeTasker.ViewTask.this, R.layout.list_inner_view, list);
+            adapt = new MyAdapter(toDoScreen.this, R.layout.activity_to_do_list_inner_view, list);
             ListView listTask = (ListView) findViewById(R.id.listView1);
             listTask.setAdapter(adapt);
 
@@ -59,11 +71,11 @@ public class ViewTask extends AppCompatActivity {
         }
     }
 
-    private class MyAdapter extends ArrayAdapter<Task> {
+    private class MyAdapter extends ArrayAdapter<toDoClass> {
         Context context;
-        List<Task> taskList = new ArrayList<Task>();
+        List<toDoClass> taskList = new ArrayList<toDoClass>();
         int layoutResourceId;
-        public MyAdapter(Context context, int layoutResourceId, List<Task> objects) {
+        public MyAdapter(Context context, int layoutResourceId, List<toDoClass> objects) {
             super(context, layoutResourceId, objects);
             this.layoutResourceId = layoutResourceId;
             this.taskList = objects;
@@ -78,11 +90,11 @@ public class ViewTask extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             CheckBox chk;
-            Task current = taskList.get(position);
+            toDoClass current = taskList.get(position);
 
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.list_inner_view, parent, false);
+                convertView = inflater.inflate(R.layout.activity_to_do_list_inner_view, parent, false);
                 chk = (CheckBox) convertView.findViewById(R.id.checkBox1);
                 convertView.setTag(chk);
 
@@ -90,7 +102,7 @@ public class ViewTask extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
-                        Task changeTask = (Task) cb.getTag();
+                        toDoClass changeTask = (toDoClass) cb.getTag();
                         //changeTask.setStatus(cb.isChecked() == true ? 1 : 0);
                         // Adam: Just testing...
                         if (cb.isChecked()) {
@@ -100,7 +112,7 @@ public class ViewTask extends AppCompatActivity {
                         }
                         db.updateTask(changeTask);
                         // For Debugging
-                        Toast.makeText(getApplicationContext(), "Clicked on Checkbox ID: " + current.getId() + " Content: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Clicked on Checkbox ID: " + current.getId() + " Content: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -108,24 +120,34 @@ public class ViewTask extends AppCompatActivity {
                     @Override
                     public boolean onLongClick(View v) {
                         CheckBox cb = (CheckBox) v;
-                        Task changeTask = (Task) cb.getTag();
-                        changeTask.setDeleted(1);
-                        db.updateTask(changeTask);
-                        // Adam: Dirty Hack for the mean time to now show the item :D
-                        cb.setVisibility(View.INVISIBLE);
-                        // For Debugging
-                        Toast.makeText(getApplicationContext(), "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG).show();
 
-                        // Adam: Here I am forcing a full reload of the task list
-                        db = new TaskerDbHelper(com.example.metaMergeTasker.ViewTask.this);
-                        list = db.getAllTasks();
-                        adapt = new MyAdapter(com.example.metaMergeTasker.ViewTask.this, R.layout.list_inner_view, list);
-                        ListView listTask = (ListView) findViewById(R.id.listView1);
-                        listTask.setAdapter(adapt);
+                        new AlertDialog.Builder(toDoScreen.this)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setTitle("Are you sure?")
+                                .setMessage("Do you want to delete this task?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        toDoClass changeToDoClass = (toDoClass) cb.getTag();
+                                        changeToDoClass.setDeleted(1);
+                                        db.updateTask(changeToDoClass);
+                                        // Adam: Dirty Hack for the mean time to now show the item :D
+                                        cb.setVisibility(View.INVISIBLE);
+                                        // For Debugging
+                                        //Toast.makeText(getApplicationContext(), "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG).show();
 
-                        adapt.notifyDataSetChanged();
+                                        // Adam: Here I am forcing a full reload of the task list
+                                        db = new toDoDbHelper(toDoScreen.this);
+                                        list = db.getAllTasks();
+                                        adapt = new MyAdapter(toDoScreen.this, R.layout.activity_to_do_list_inner_view, list);
+                                        ListView listTask = (ListView) findViewById(R.id.listView1);
+                                        listTask.setAdapter(adapt);
 
-                        return false;
+                                        adapt.notifyDataSetChanged();
+                                    }
+                                }).setNegativeButton("No", null).show();
+                        return true;
+
                     }
                 });
             } else {
@@ -144,7 +166,7 @@ public class ViewTask extends AppCompatActivity {
             chk.setTag(current);
 
             //Adam: This is for debugging
-            Log.d("listener", "ID: " + String.valueOf(current.getId()) + " - Status: " + current.getStatus());
+            //Log.d("listener", "ID: " + String.valueOf(current.getId()) + " - Status: " + current.getStatus());
 
             return convertView;
         }

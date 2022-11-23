@@ -11,24 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHolder> {
+public class expenseAdapter extends RecyclerView.Adapter<expenseAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<Expense> list;
+    private ArrayList<expenseClass> list;
 
-    public ExpenseAdapter(Context context, ArrayList<Expense> list) {
+    public expenseAdapter(Context context, ArrayList<expenseClass> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public ExpenseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_design,parent,false);
+    public expenseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.activtity_expense_recycler_design,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExpenseAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull expenseAdapter.ViewHolder holder, int position) {
         holder.exp.setText(list.get(position).getExpenseName());
         holder.amount.setText(Double.toString(list.get(position).getExpenseAmount()));
     }

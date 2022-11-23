@@ -10,42 +10,28 @@
         android:theme="@style/Theme.MyLoginApp">
 
         <activity
-            android:name=".ViewTask"
+            android:name=".toDoScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".expenseMain"
+            android:name=".expenseScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".todoMainActivity"
+            android:name=".noteMainScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".todoEditTask"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".noteMainActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".noteEditActivity"
+            android:name=".noteEditScreen"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

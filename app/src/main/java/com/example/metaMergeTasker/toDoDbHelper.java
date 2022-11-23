@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskerDbHelper extends SQLiteOpenHelper {
+public class toDoDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "taskerManager";
@@ -24,7 +24,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
     private static final String KEY_STATUS = "status";
     private static final String KEY_DELETED = "deleted";
 
-    public TaskerDbHelper(Context context) {
+    public toDoDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -46,7 +46,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addTask(Task task) {
+    public void addTask(toDoClass task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_TASKNAME, task.getTaskName()); // task name
@@ -62,8 +62,8 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    public List<Task> getAllTasks() {
-        List<Task> taskList = new ArrayList<Task>();
+    public List<toDoClass> getAllTasks() {
+        List<toDoClass> taskList = new ArrayList<toDoClass>();
         // Select All Query
         // ADAM : Select all entries except for those flagged as deleted
         String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE " + KEY_DELETED + " <> 1";
@@ -73,10 +73,10 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        Task task;
+        toDoClass task;
         if (cursor.moveToFirst()) {
             do {
-                task = new Task();
+                task = new toDoClass();
                 task.setId(cursor.getInt(0));
                 task.setTaskName(cursor.getString(1));
                 task.setDeleted(cursor.getInt(2));
@@ -92,7 +92,7 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         return taskList;
         }
 
-        public void updateTask(Task task) {
+        public void updateTask(toDoClass task) {
             // updating row
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues values = new ContentValues();

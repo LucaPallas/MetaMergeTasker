@@ -1,18 +1,18 @@
 package com.example.metaMergeTasker;
 
-public class Task {
+public class toDoClass {
     private String taskName;
     private Integer status;
     private int id;
     private Integer deleted;
 
-    public Task() {
+    public toDoClass() {
         this.taskName=null;
         this.status=0;
         this.deleted=0;
     }
 
-    public Task(String taskName, Integer status, Integer deleted) {
+    public toDoClass(String taskName, Integer status, Integer deleted) {
         super();
         this.taskName = taskName;
         this.status = status;

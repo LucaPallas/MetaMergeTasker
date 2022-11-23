@@ -35,7 +35,7 @@ public class homeScreen extends AppCompatActivity {
         // Adam: Note Taker Image Button Action
         lists.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, ViewTask.class);
+                Intent intent=new Intent(homeScreen.this, toDoScreen.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +44,7 @@ public class homeScreen extends AppCompatActivity {
         organiser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //new extraFunctions.ShowToast(homeScreen.this, true, "Organiser - Yet to be implemented!");
-                Intent intent=new Intent(homeScreen.this, noteMainActivity.class);
+                Intent intent=new Intent(homeScreen.this, noteMainScreen.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class homeScreen extends AppCompatActivity {
          // Adam: Expense Manager Button Action
         expMang.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(homeScreen.this, expenseMain.class);
+                Intent intent=new Intent(homeScreen.this, expenseScreen.class);
                 startActivity(intent);
             }
         });

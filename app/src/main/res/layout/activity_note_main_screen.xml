@@ -5,7 +5,7 @@
     android:id="@+id/add_note"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".noteMainActivity"
+    tools:context=".noteMainScreen"
     android:background="@drawable/background_organiser">
 
     <!--Adding a ListView -->
@@ -17,8 +17,8 @@
         android:layout_width="409dp"
         android:layout_height="601dp"
         android:layout_marginTop="80dp"
-        android:background="#30FFFFFF"
-        android:backgroundTint="#7CBEE7"
+        android:background="#E6000000"
+        android:backgroundTint="#001B2B"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textStyle="bold"

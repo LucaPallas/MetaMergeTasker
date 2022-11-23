@@ -1,5 +1,8 @@
 package com.example.metaMergeTasker;
 
+import static java.lang.Math.round;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +17,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class expenseMain extends AppCompatActivity {
+public class expenseScreen extends AppCompatActivity {
     RecyclerView recyclerView;
-    ExpenseAdapter adapter;
-    ArrayList<Expense> list;
+    expenseAdapter adapter;
+    ArrayList<expenseClass> list;
     TextInputLayout exp,amount;
     TextView total;
     Button add;
@@ -63,7 +66,7 @@ public class expenseMain extends AppCompatActivity {
 
             // Rebuild Array list from two HashSets
             while (itCounter.hasNext()) {
-                list.add(new Expense(itCounter.next().toString(), Double.parseDouble(itCounter2.next().toString())));
+                list.add(new expenseClass(itCounter.next().toString(), Double.parseDouble(itCounter2.next().toString())));
             }
         }
 
@@ -73,7 +76,7 @@ public class expenseMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_main);
+        setContentView(R.layout.activity_expense_screen);
         recyclerView = findViewById(R.id.recyclerview);
         list = new ArrayList<>();
         exp = findViewById(R.id.expense);
@@ -81,10 +84,16 @@ public class expenseMain extends AppCompatActivity {
         add = findViewById(R.id.addbutton);
         total = findViewById(R.id.totalamount);
 
+        new AlertDialog.Builder(expenseScreen.this)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setTitle("Information")
+                .setMessage("Use inputs at bottom to enter an expense name and amount" + "\n\n" + "Use button to add an expense to the list" + "\n\n" + "Ability to delete and edit an expense are currently unavailable")
+                .setPositiveButton("OK", null).show();
+
         // Adam: Fetch DATA From Storage
         storageRecv();
 
-        adapter = new ExpenseAdapter(this,list);
+        adapter = new expenseAdapter(this,list);
         LinearLayoutManager llm = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
@@ -95,7 +104,7 @@ public class expenseMain extends AppCompatActivity {
                 Double totalAmount = 0.00;
                 String ex = exp.getEditText().getText().toString();
                 Double a = Double.parseDouble(amount.getEditText().getText().toString());
-                list.add(new Expense(ex,a));
+                list.add(new expenseClass(ex,a));
                 adapter.notifyDataSetChanged();
                 exp.getEditText().setText("");
                 amount.getEditText().setText("");
@@ -103,7 +112,7 @@ public class expenseMain extends AppCompatActivity {
                 for(int i = 0;i <list.size();i++){
 
                     totalAmount += list.get(i).getExpenseAmount();
-                    total.setText("Total - $"+totalAmount);
+                    total.setText("Total - $"+ round(totalAmount*100d)/100d);
                 }
                 // Adam: Update stored DATA
                 storageSend();
