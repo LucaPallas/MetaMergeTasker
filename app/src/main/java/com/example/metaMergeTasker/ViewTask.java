@@ -2,6 +2,8 @@ package com.example.metaMergeTasker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
@@ -47,9 +49,9 @@ public class ViewTask extends AppCompatActivity {
             adapt.add(task);
 
             // Adam: Here I am forcing a full reload of the task list
-            db = new TaskerDbHelper(this);
+            db = new TaskerDbHelper(com.example.metaMergeTasker.ViewTask.this);
             list = db.getAllTasks();
-            adapt = new MyAdapter(this, R.layout.list_inner_view, list);
+            adapt = new MyAdapter(com.example.metaMergeTasker.ViewTask.this, R.layout.list_inner_view, list);
             ListView listTask = (ListView) findViewById(R.id.listView1);
             listTask.setAdapter(adapt);
 
@@ -113,6 +115,13 @@ public class ViewTask extends AppCompatActivity {
                         cb.setVisibility(View.INVISIBLE);
                         // For Debugging
                         Toast.makeText(getApplicationContext(), "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG).show();
+
+                        // Adam: Here I am forcing a full reload of the task list
+                        db = new TaskerDbHelper(com.example.metaMergeTasker.ViewTask.this);
+                        list = db.getAllTasks();
+                        adapt = new MyAdapter(com.example.metaMergeTasker.ViewTask.this, R.layout.list_inner_view, list);
+                        ListView listTask = (ListView) findViewById(R.id.listView1);
+                        listTask.setAdapter(adapt);
 
                         adapt.notifyDataSetChanged();
 
