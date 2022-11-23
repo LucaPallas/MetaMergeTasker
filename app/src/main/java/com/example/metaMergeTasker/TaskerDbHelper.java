@@ -66,7 +66,8 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
         // ADAM : Select all entries except for those flagged as deleted
-        String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE '" + KEY_DELETED + "' <> 1";
+        String selectQuery = "SELECT * FROM " + TABLE_TASKS + " WHERE " + KEY_DELETED + " <> 1";
+        Log.d("listener", selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase(); // Adam: Made this a read only task
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -78,7 +79,8 @@ public class TaskerDbHelper extends SQLiteOpenHelper {
                 task = new Task();
                 task.setId(cursor.getInt(0));
                 task.setTaskName(cursor.getString(1));
-                task.setStatus(cursor.getInt(2));
+                task.setDeleted(cursor.getInt(2));
+                task.setStatus(cursor.getInt(3));
 
                 // Adding task to the list
                 taskList.add(task);

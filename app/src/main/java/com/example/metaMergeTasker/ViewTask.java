@@ -97,8 +97,7 @@ public class ViewTask extends AppCompatActivity {
                             changeTask.setStatus(0); // Works all the time
                         }
                         db.updateTask(changeTask);
-                        db.updateTask(changeTask);
-
+                        // For Debugging
                         Toast.makeText(getApplicationContext(), "Clicked on Checkbox ID: " + current.getId() + " Content: " + cb.getText() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
                     }
                 });
@@ -110,8 +109,9 @@ public class ViewTask extends AppCompatActivity {
                         Task changeTask = (Task) cb.getTag();
                         changeTask.setDeleted(1);
                         db.updateTask(changeTask);
-
+                        // For Debugging
                         Toast.makeText(getApplicationContext(), "Long on Checkbox ID: " + current.getId() + " Content: " + cb.getText(), Toast.LENGTH_LONG).show();
+                        adapt.notifyDataSetChanged();
 
                         return false;
                     }
@@ -121,7 +121,14 @@ public class ViewTask extends AppCompatActivity {
             }
 
             chk.setText(current.getTaskName());
-            chk.setChecked(current.getStatus() == 1 ? true : false);
+            // Adam: Simplified this to an if else statement, easier to read...
+            //chk.setChecked(current.getStatus() == 1 ? true : false);
+            if (current.getStatus() == 1) {
+                chk.setChecked(true);
+                chk.setText(current.getTaskName());
+            } else {
+                chk.setChecked(false);
+            }
             chk.setTag(current);
 
             //Adam: This is for debugging

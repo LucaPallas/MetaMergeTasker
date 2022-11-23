@@ -2,9 +2,9 @@ package com.example.metaMergeTasker;
 
 public class Task {
     private String taskName;
-    private int status;
+    private Integer status;
     private int id;
-    private int deleted;
+    private Integer deleted;
 
     public Task() {
         this.taskName=null;
@@ -12,7 +12,7 @@ public class Task {
         this.deleted=0;
     }
 
-    public Task(String taskName, int status, int deleted) {
+    public Task(String taskName, Integer status, Integer deleted) {
         super();
         this.taskName = taskName;
         this.status = status;
@@ -31,14 +31,14 @@ public class Task {
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
     public void setStatus(int status)
     {
         this.status = status;
     }
-    public int getDeleted() {
+    public Integer getDeleted() {
         return deleted;
     }
     public void setDeleted(int deleted) { this.deleted = deleted; }
