@@ -72,7 +72,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="6dp"
         android:hint="Enter Amount"
-        android:textColor="#FFFFFF"
         android:textColorHint="#979393"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
@@ -85,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#011B30"
+            android:textColor="#FFFFFF"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
 
